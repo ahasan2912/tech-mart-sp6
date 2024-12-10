@@ -11,6 +11,7 @@ app.use(cors());
 
 const uri = `mongodb+srv://${process.env.USER_DB}:${process.env.PASS_DB}@cluster0.jqnby.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
+
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
@@ -24,10 +25,18 @@ async function run() {
   try {
     const database = client.db("productDB");
     const dataCollection = database.collection("product");
+    const orderCollection = client.db("productDB").collection("order");
 
     app.post('/product', async (req, res) => {
       const prodcut = req.body;
       const result = await dataCollection.insertOne(prodcut);
+      res.send(result);
+    })
+
+    //order
+    app.post('/order', async (req, res) => {
+      const order = req.body;
+      const result = await orderCollection.insertOne(order);
       res.send(result);
     })
 
@@ -37,10 +46,26 @@ async function run() {
       res.send(result);
     })
 
+    //order 
+    app.get('/order', async (req, res) => {
+      const cursor = orderCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    })
+
+
     app.delete('/product/:id', async (req, res) => {
       const id = req.params.id;
       const quary = { _id: new ObjectId(id) };
       const result = await dataCollection.deleteOne(quary);
+      res.send(result);
+    })
+
+    // delete order
+    app.delete('/order/:id', async (req, res) => {
+      const id = req.params.id;
+      const quary = { _id: new ObjectId(id) };
+      const result = await orderCollection.deleteOne(quary);
       res.send(result);
     })
 

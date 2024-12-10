@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import googleLogo from '../assets/google-icon.png'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -9,6 +9,7 @@ const Register = () => {
     const { handleRegister, handleLoginWithGoogle, setUser } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleRegisterBtn = e => {
         e.preventDefault();
@@ -20,6 +21,7 @@ const Register = () => {
             .then((result) => {
                 setUser(result.user);
                 toast.success("You have successfully registered");
+                navigate('/login')
             })
             .catch((err) => {
                 setError(err.message);
@@ -30,6 +32,7 @@ const Register = () => {
         handleLoginWithGoogle()
             .then(res => {
                 toast.success("You have successfully Login!");
+                navigate('/');
             })
     }
 

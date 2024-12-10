@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import googleLogo from '../assets/google-icon.png'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { AuthContext } from '../Provider/AuthProvider';
@@ -9,6 +9,7 @@ const Login = () => {
     const { handleLoginWithEmail, handleLoginWithGoogle, setUser } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState("");
+    const navigate = useNavigate();
     const handleLoginBtn = e => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -19,6 +20,7 @@ const Login = () => {
             .then((result) => {
                 setUser(result.user);
                 toast.success("You have successfully Login!");
+                navigate('/');
             })
             .catch((err) => {
                 setError(err.message);
@@ -29,6 +31,7 @@ const Login = () => {
         handleLoginWithGoogle()
             .then(res => {
                 toast.success("You have successfully Login!");
+                navigate('/');
             })
     }
     return (

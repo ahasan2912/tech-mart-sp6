@@ -6,10 +6,13 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import AddCart from './Componets/AddCart.jsx';
 import AddProduct from './Componets/AddProduct.jsx';
+import Admin from './Componets/Admin.jsx';
 import Home from './Componets/Home.jsx';
 import Login from './Componets/Login.jsx';
 import MainLayOut from './Componets/MainLayOut.jsx';
+import OrderList from './Componets/OrderList.jsx';
 import Register from './Componets/Register.jsx';
 import UpdateProduct from './Componets/UpdateProduct.jsx';
 import AuthProvider from './Provider/AuthProvider.jsx';
@@ -26,8 +29,22 @@ const router = createBrowserRouter([
         loader: () => fetch('https://tech-mart-server-delta.vercel.app/product')
       },
       {
+        path: "/admin",
+        element: <Admin></Admin>,
+        loader: () => fetch('https://tech-mart-server-delta.vercel.app/product')
+      },
+      {
         path: "/addproduct",
         element: <AddProduct></AddProduct>
+      },
+      {
+        path: "/addcart",
+        element: <AddCart></AddCart>
+      },
+      {
+        path: "/orderList",
+        element: <OrderList></OrderList>,
+        loader: () => fetch('https://tech-mart-server-delta.vercel.app/order')
       },
       {
         path: "/register",
