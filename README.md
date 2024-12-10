@@ -2,6 +2,7 @@
 The Tech Mart E-commerce project features a robust backend built with Node.js, Express, and MongoDB, implementing CRUD operations for products, users, and orders. It includes user authentication using JWT and data management via Mongoose. The frontend, developed with React, uses React Router for navigation, Tailwind CSS for a responsive design, and Firebase Authentication for secure user login and signup. Together, these technologies provide a seamless, responsive, and secure e-commerce platform.
 #
 # Using Technologies
+- //backend
 - Node.js: JavaScript runtime for building the server.
 - Express: Lightweight framework for handling routes and middleware.
 - MongoDB: NoSQL database for storing application data.
