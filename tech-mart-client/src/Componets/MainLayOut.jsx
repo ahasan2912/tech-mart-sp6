@@ -4,7 +4,7 @@ import Header from "./Header";
 
 const MainLayOut = () => {
     const loaderData = useLoaderData();
-    console.log(loaderData.length);
+    // console.log(loaderData.length);
     return (
         <div>
             <Header></Header>

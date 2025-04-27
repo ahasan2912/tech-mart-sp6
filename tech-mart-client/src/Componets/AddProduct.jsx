@@ -16,7 +16,7 @@ const AddProduct = () => {
         const addProduct = {
             photo, product, category, price, name, email
         };
-        fetch('https://tech-mart-server-delta.vercel.app/product', {
+        fetch('http://localhost:5000/product', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

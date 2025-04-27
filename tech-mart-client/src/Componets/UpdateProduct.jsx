@@ -20,7 +20,7 @@ const UpdateProduct = () => {
             photo, product, category, price, name, email
         };
 
-        fetch(`https://tech-mart-server-delta.vercel.app/product/${_id}`, {
+        fetch(`http://localhost:5000/product/${_id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

@@ -3,8 +3,8 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 
 import {
-  createBrowserRouter,
-  RouterProvider,
+    createBrowserRouter,
+    RouterProvider,
 } from "react-router-dom";
 import AddCart from './Componets/AddCart.jsx';
 import AddProduct from './Componets/AddProduct.jsx';
@@ -16,35 +16,37 @@ import OrderList from './Componets/OrderList.jsx';
 import Register from './Componets/Register.jsx';
 import UpdateProduct from './Componets/UpdateProduct.jsx';
 import AuthProvider from './Provider/AuthProvider.jsx';
+import PaymentSuccess from './Componets/PaymentSuccess.jsx';
+import PaymentFaild from './Componets/PaymentFaild.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayOut></MainLayOut>,
-    loader: ()=> fetch('https://tech-mart-server-delta.vercel.app/product'),
+    loader: ()=> fetch('http://localhost:5000/product'),
     children: [
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch('https://tech-mart-server-delta.vercel.app/product')
+        loader: () => fetch('http://localhost:5000/product')
       },
       {
         path: "/admin",
         element: <Admin></Admin>,
-        loader: () => fetch('https://tech-mart-server-delta.vercel.app/product')
+        loader: () => fetch('http://localhost:5000/product')
       },
       {
         path: "/addproduct",
         element: <AddProduct></AddProduct>
       },
       {
-        path: "/addcart",
+        path: "/addcart/:id",
         element: <AddCart></AddCart>
       },
       {
         path: "/orderList",
         element: <OrderList></OrderList>,
-        loader: () => fetch('https://tech-mart-server-delta.vercel.app/order')
+        loader: () => fetch('http://localhost:5000/order')
       },
       {
         path: "/register",
@@ -53,11 +55,19 @@ const router = createBrowserRouter([
       {
         path: "/update/:id",
         element: <UpdateProduct></UpdateProduct>,
-        loader: ({params})=> fetch(`https://tech-mart-server-delta.vercel.app/product/${params.id}`)
+        loader: ({params})=> fetch(`http://localhost:5000/product/${params.id}`)
       },
       {
         path: "/login",
         element: <Login></Login>
+      },
+      {
+        path: "/payment/success/:tranId",
+        element: <PaymentSuccess></PaymentSuccess>
+      },
+      {
+        path: "/payment/fail/:tranId",
+        element: <PaymentFaild></PaymentFaild>
       },
     ]
   },

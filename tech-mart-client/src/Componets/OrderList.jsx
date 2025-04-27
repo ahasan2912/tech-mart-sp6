@@ -16,7 +16,7 @@ const OrderList = () => {
             confirmButtonText: "Yes, Cancel it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://tech-mart-server-delta.vercel.app/order/${id}`, {
+                fetch(`http://localhost:5000/order/${id}`, {
                     method: "DELETE",
                 })
                     .then(res => res.json())
@@ -47,7 +47,7 @@ const OrderList = () => {
                             <th>Customer Name</th>
                             <th>Product Name</th>
                             <th>Quantity</th>
-                            <th>Phone Number</th>
+                            <th>price</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -56,10 +56,10 @@ const OrderList = () => {
                             orderList.map((order, idx) =>
                                 <tr key={idx} className="hover border">
                                     <th>{idx + 1}</th>
-                                    <td>{order.cName}</td>
-                                    <td>{order.product}</td>
+                                    <td>{order.name}</td>
+                                    <td>{order.product_name}</td>
                                     <td>{order.quantity}</td>
-                                    <td>{order.phone}</td>
+                                    <td>{order.price_new}</td>
                                     <td>
                                         <Link>
                                             <button onClick={()=> handleDelete(order._id)} className='btn'>Order Cancle</button>

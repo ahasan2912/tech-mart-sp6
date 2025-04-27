@@ -13,7 +13,7 @@ const ProductCard = ({ pro, products, setProducts }) => {
                 <p className='font-bold'>Price: ${price}</p>
             </div>
             <div className='text-center mt-6 space-x-3'>
-                <Link to="/addcart" className='btn bg-[#e02c6d] text-white font-bold w-full'>Add Cart</Link>
+                <Link to={`/addcart/${_id}`} className='btn bg-[#e02c6d] text-white font-bold w-full'>Order confirm</Link>
             </div>
         </div>
     );

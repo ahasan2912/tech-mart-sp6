@@ -15,7 +15,7 @@ const AdminCard = ({ pro, products, setProducts }) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://tech-mart-server-delta.vercel.app/product/${id}`, {
+                fetch(`http://localhost:5000/product/${id}`, {
                     method: "DELETE",
                 })
                     .then(res => res.json())
